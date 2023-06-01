@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Journal</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Secure Journal</h1>
+    <div id="journal">
+        <input type="text" id="entryTitle" placeholder="Entry title...">
+        <textarea id="entry" placeholder="Write your journal entry..."></textarea>
+        <input type="text" id="key" placeholder="Enter your encryption key...">
+        <button id="saveButton">Save Entry</button>
+        <button id="newButton">New Entry</button>
+    </div>
+    <div id="entries">
+        <h2>Saved Entries:</h2>
+        <select id="entrySelect"></select>
+        <button id="loadButton">Load Entry</button>
+        <button id="deleteButton">Delete Entry</button>
+        <button id="renameButton">Rename Entry</button>
+    </div>
+    <div id="message"></div>
+    <script src="app.js"></script>
+</body>
+</html>
