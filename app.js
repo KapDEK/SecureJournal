@@ -111,6 +111,33 @@ document.getElementById('key').addEventListener('input', function() {
     }
 });
 
+
+
+
 window.onload = function() {
     updateEntrySelect(entries);
 };
+// ...
+
+function fetchVersion() {
+    fetch('https://api.github.com/repos/KapDEK/SecureJournal/releases')
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.length > 0) {
+                document.getElementById('version').innerText = 'Version: ' + data[0].name;
+            } else {
+                document.getElementById('version').innerText = 'No releases found';
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+
+window.onload = function() {
+    let entries = JSON.parse(localStorage.getItem('entries')) || [];
+    updateEntrySelect(entries);
+    fetchVersion();  // fetch version on window load
+};
+
