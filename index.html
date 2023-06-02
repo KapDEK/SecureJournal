@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Secure Journal</title>
+    <title>Very Safe Journal Alpha</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Secure Journal</h1>
+    <h1>Very Safe Journal Alpha</h1>
     <div id="journal">
         <input type="text" id="entryTitle" placeholder="Entry title...">
         <textarea id="entry" placeholder="Write your journal entry..."></textarea>
+        <body>
+        </body>
+        
         <input type="text" id="key" placeholder="Enter your encryption key...">
         <button id="saveButton">Save Entry</button>
         <button id="newButton">New Entry</button>
+    
+        <div id="version" class="version"></div>
+
+        
     </div>
     <div id="entries">
         <h2>Saved Entries:</h2>
@@ -21,6 +28,7 @@
         <button id="renameButton">Rename Entry</button>
     </div>
     <div id="message"></div>
+    <div id="version" class="version"></div>
     <script src="app.js"></script>
 </body>
 </html>

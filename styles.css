@@ -21,3 +21,9 @@ button {
     display: block;
     margin-top: 10px;
 }
+
+.version {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
