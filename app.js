@@ -85,6 +85,24 @@ document.getElementById('deleteButton').addEventListener('click', function() {
     updateEntrySelect(entries);
     document.getElementById('message').innerText = 'Entry deleted successfully!';
 });
+document.getElementById('entry').addEventListener('input', function() {
+    const characterCount = document.getElementById('entry').value.length;
+    document.getElementById('characterCount').innerText = 'Character count: ' + characterCount;
+});
+document.getElementById('searchButton').addEventListener('click', function() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const entries = JSON.parse(localStorage.getItem('entries')) || [];
+    const searchResults = document.getElementById('searchResults');
+    searchResults.innerHTML = '';
+    entries.forEach((entry, index) => {
+        if (entry.title.toLowerCase().includes(searchTerm) || descramble(entry.text, Number(entry.key)).toLowerCase().includes(searchTerm)) {
+            const searchResult = document.createElement('div');
+            searchResult.textContent = entry.title;
+            searchResults.appendChild(searchResult);
+        }
+    });
+});
+
 
 document.getElementById('renameButton').addEventListener('click', function() {
     const selectedIndex = document.getElementById('entrySelect').value;
@@ -102,6 +120,17 @@ document.getElementById('renameButton').addEventListener('click', function() {
         document.getElementById('message').innerText = 'No entry selected.';
     }
 });
+document.getElementById('exportButton').addEventListener('click', function() {
+    let entries = JSON.parse(localStorage.getItem('entries')) || [];
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(entries));
+    let downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "journal_entries.json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+});
+
 
 document.getElementById('key').addEventListener('input', function() {
     if (isNewEntry) {
@@ -140,4 +169,3 @@ window.onload = function() {
     updateEntrySelect(entries);
     fetchVersion();  // fetch version on window load
 };
-
